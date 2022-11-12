@@ -24,7 +24,7 @@ for %%g in ("%win_src_path%") do set foldername=%%~nxg
 choice /c yn /m "Yes or No"
 if errorlevel==2 exit
 
-wsl sudo sh -c "mkdir -p /mnt/src_rsync_drive/%foldername%; mount -r -t drvfs %src_drive% /mnt/src_rsync_drive/%foldername%; mkdir -p /mnt/dst_rsync_drive; mount -t drvfs %dst_drive% /mnt/dst_rsync_drive; rsync -av /mnt/src_rsync_drive/%foldername% /mnt/dst_rsync_drive"
+wsl sudo sh -c "mkdir -p /mnt/src_rsync_drive/%foldername%; mount -r -t drvfs %src_drive% /mnt/src_rsync_drive/%foldername%; mkdir -p /mnt/dst_rsync_drive; mount -t drvfs %dst_drive% /mnt/dst_rsync_drive; rsync -av /mnt/src_rsync_drive/%foldername% /mnt/dst_rsync_drive --delete-delay"
 echo Last complete rsync: %DATE% %TIME%>%win_dst_path%\rsync_date.txt
 PAUSE
 ::echo Window closes in 3 seconds.
